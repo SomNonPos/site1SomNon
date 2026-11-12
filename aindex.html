@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta author="SomNonPos">
+  <meta description="игры, game, games">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/myau.png">
+    <title>APAdE | Баловство</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+ul {
+  list-style-type: none;
+}
+.up-tab {
+  position: fixed;
+  background-color: #616362;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 12.5%;
+  display: flex;
+  align-items: center;
+}
+#search-soft {
+  margin: 0;
+  padding: 0;
+  width: 75%;
+  height: 58%;
+  border-radius: 15px;
+}
+.btn-left-menu {
+  position: relative;
+  cursor: pointer;
+  left: 0;
+  top: -5%;
+  width: 5%;
+  min-width: 50px;
+  height: 70%;
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+.btn-left-menu span {
+  width: 100%;
+  margin-top: 12%;
+  height: 10%;
+  background-color: #54e39e;
+  border-radius: 25px;
+}
+.left-menu {
+  position: fixed;
+  background-color: #363636;
+  height: 100%;
+  width: 30%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  min-width: 350px;
+}
+.l-m-list {
+  margin-top: 20%;
+  margin-left: 4%;
+  display: flex;
+  align-items: center;
+}
+#left-menu-id {
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+#left-menu-id.open {
+  transform: translateX(0%)
+}
+.text-l-m {
+  text-align: center;
+  text-decoration: none;
+  margin-left: 10%;
+  margin-top: 10%;
+  color: #ffffff;
+  font-size: 130%;
+  border: 2px solid #ffffff;
+  height: 10%;
+  width: 200%;
+  position: relative;
+  display: block;
+  line-height: 40%;
+  background-color: #777777;
+  cursor: pointer;
+}
+.close-left-menu-button {
+  position: relative;
+  background: transparent;
+  border: none;
+  width: 25%;
+  height: 7.5%;
+  cursor: pointer;
+  margin-left: 75%;
+}
+.close-left-menu-button::before,
+.close-left-menu-button::after {
+  position: absolute;
+  content: ' ';
+  margin-top: 2%;
+  height: 100%;
+  width: 10%;
+  background-color: #ff1010;
+}
+.close-left-menu-button::before {
+  transform: rotate(45deg);
+}
+.close-left-menu-button::after {
+  transform: rotate(-45deg);
+}
+.btn-user {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  border: none;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  margin-left: 14%;
+  top: -5%;
+  width: 4%;
+  min-width: 50px;
+  height: 70%;
+  border-radius: 50%;
+  align-items: center;
+  overflow: hidden;
+}
+.btn-user-hd {
+  border-radius: 50%;
+  width: 45%;
+  height: 45%;
+  margin-top: 12%;
+  background-color: #54e39e;
+}
+.btn-user-bd {
+  border-radius: 50% 50% 0 0;
+  width: 70%;
+  margin-top: 10%;
+  height: 45%;
+  background-color: #54e39e;
+  margin-bottom: -5%;
+}
+.game-list {
+  position: absolute;
+  background-color: #414241;
+  width: 100%;
+  min-width: 21px;
+  max-width: 1075px;
+  left: 1%;
+  bottom: 5%;
+  height: 78%;
+  margin-right: 75px;
+}
+.game-icon {
+  position: relative;
+  margin-top: 2%;
+  margin-left: 2%;
+  height: 40vh;
+  width: 14vw;
+  border: 2px solid #778fb8;
+  border-radius: 4px;
+  background-color: #6e0016;
+  cursor: pointer;
+}
+.game-icon:hover {
+  border: 2px solid #c2ff78;
+}
+.game-icon span img {
+  position: absolute;
+  top: 3%;
+  background-color: #aabbff;
+  margin-left: 2%;
+  height: 50%;
+  width: 96%;
+  border: 2px;
+}
+.game-icon span p {
+  position: absolute;
+  top: 55%;
+  color: #ffffff;
+  margin-left: 2%;
+  height: 50%;
+  width: 96%;
+  font-size: 120%;
+}
+.game-icon span p::before {
+  position: absolute;
+  content:"GAME DEV";
+  top: 40%;
+  color: #ffbfbf;
+  margin-left: 0;
+  height: 50%;
+  width: 96%;
+  font-size: 120%;
+}
+.game-janr {
+  position: absolute;
+  background-color:  #414241;
+  height: 78%;
+  bottom: 5%;
+  width: 17%;
+  right: 1.5%;
+  min-width: 200px;
+}
+.list-game {
+  display: flex;
+}
+    </style>
+</head>
+<body>
+  <aside class = "left-menu" id = "left-menu-id">
+    <button class = "close-left-menu-button" id = "close-l-m-b">
+    </button>
+    <ul class = "l-m-list">
+      <li>
+        <a class = "text-l-m" href = "add-game-index.html" style="margin-top: -10%;">
+            <p>Добавить  игру</p>
+        </a>
+        <a class = "text-l-m" href = aindex.html>
+            <p> Меню </p>
+        </a>
+        <a class = "text-l-m" href = settings.html>
+            <p> Настройки </p>
+        </a>
+      </li>
+    </ul>
+  </aside>
+  <aside class = "up-tab">
+    <button class = "btn-left-menu" id = "btn-left-menu-id">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <input type="text" id="search-soft" name="search" placeholder="Найти игру">
+    <a class = "btn-user" href="profile-user-index.html">
+      <span class = "btn-user-hd"></span>
+      <span class = "btn-user-bd"></span>
+    </a>
+  </aside>
+  <aside class = "game-list">
+    <ul class = "list-game">
+      <li class = "game-icon">
+        <a href = "game-clicker.html">
+          <span>
+            <img src = "images/test-img.png">
+            <p>Кликер 3000</p>
+          </span>
+        </a>
+      </li>
+      <li  class = "game-icon">
+        <a href = "game-racing.html">
+          <span>
+            <img src = "images/test-img.png">
+            <p> гонки </p>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+  <aside class = "game-janr">
+  </aside>
+  <script src = "ascript.js" defer></script>
+</body>
+<html>

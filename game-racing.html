@@ -1,0 +1,512 @@
+﻿<!DOCTYPE html>
+<html lang = "ru">
+<head>
+  <meta charset="UTF-8">
+  <meta author="SomNonPos">
+  <meta description="игры, game, games">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/myau.png">
+    <title>APAdE | Гонки</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+ul {
+  list-style-type: none;
+}
+.btn-left-menu {
+  position: absolute;
+  cursor: pointer;
+  left: 0;
+  top: 3%;
+  width: 5%;
+  min-width: 50px;
+  height: 10%;
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+.btn-left-menu span {
+  width: 100%;
+  margin-top: 12%;
+  height: 9%;
+  background-color: #54e39e;
+  border-radius: 25px;
+}
+.left-menu {
+  position: fixed;
+  background-color: #363636;
+  height: 100%;
+  width: 30%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  min-width: 350px;
+}
+.l-m-list {
+  margin-top: 20%;
+  margin-left: 4%;
+  display: flex;
+  align-items: center;
+}
+#left-menu-id {
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+#left-menu-id.open {
+  transform: translateX(0%)
+}
+.text-l-m {
+  text-align: center;
+  text-decoration: none;
+  margin-left: 10%;
+  margin-top: 10%;
+  color: #ffffff;
+  font-size: 130%;
+  border: 2px solid #ffffff;
+  height: 10%;
+  width: 200%;
+  position: relative;
+  display: block;
+  line-height: 40%;
+  background-color: #777777;
+  cursor: pointer;
+}
+.close-left-menu-button {
+  position: relative;
+  background: transparent;
+  border: none;
+  width: 25%;
+  height: 7.5%;
+  cursor: pointer;
+  margin-left: 75%;
+}
+.close-left-menu-button::before,
+.close-left-menu-button::after {
+  position: absolute;
+  content: ' ';
+  margin-top: 2%;
+  height: 100%;
+  width: 10%;
+  background-color: #ff1010;
+}
+.close-left-menu-button::before {
+  transform: rotate(45deg);
+}
+.close-left-menu-button::after {
+  transform: rotate(-45deg);
+}
+.window-game {
+  position: absolute;
+  background-color: #414241;
+  height: 100%;
+  width: 80%;
+  left: 10%;
+  top: 0;
+}
+.background {
+  position: absolute;
+  width: 75vw;
+  height: 80vh;
+  background-color: #7f739c;
+  margin-top: 5%;
+  margin-left: 2.7%;
+  display: flex;
+  overflow: hidden;
+}
+.grass {
+  position: relative;
+  width: 100vw;
+  height: 30vh;
+  background-color: #686e34;
+  top: 63%;
+}
+.start-game {
+  position: absolute;
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  margin-left: 40%;
+  top: -80%;
+  font-size: 400%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transform: translateX(0%);
+  transition: transform 0.3s ease-in-out;
+}
+.start-game.goaway {
+  transform: translateX(-1000%);
+}
+.start-game:hover {
+  font-size:420%;
+}
+.settings {
+  position: absolute;
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  margin-left: 37%;
+  top: -40%;
+  font-size: 300%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transform: translateX(0%);
+  transition: transform 0.3s ease-in-out;
+}
+.settings.goaway {
+  transform: translateX(1000%);
+}
+.settings:hover {
+  font-size: 320%;
+}
+.road {
+  position: absolute;
+  width: 200px;
+
+  height: 80px;
+
+  background-color: #36383d;
+
+  clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+  color:#2c2f38;
+  bottom: 0;
+  width: 65vw;
+  height: 30vh;
+  margin-left: 7.5%;
+}
+.road::after,
+.road::before {
+  position: absolute;
+  content: " ";
+  background-color: #515254;
+  width: 3vw;
+  height: 30vh;
+  bottom: 0;
+}
+.road::after {
+  left: 33%;
+  clip-path: polygon(100% 0%, 70% 0%, 0% 100%, 70% 100%);
+}
+.road::before {
+  right: 33%;
+  clip-path: polygon(30% 0%, 0% 0%, 30% 100%, 100% 100%);
+}
+.user-car {
+  position: absolute;
+  background-color: #ff6666;
+  clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+  width: 25%;
+  height: 70%;
+  bottom: 10%;
+  margin-left: 37.5%;
+  z-index: 2;
+  transition: transform 0.3s ease-in-out;
+}
+.user-car.toleft {
+  clip-path: polygon(20% 0%, 80% 20%, 100% 100%, 0% 100%);
+  transform: translateX(-100%);
+}
+.user-car.toright {
+  clip-path: polygon(20% 20%, 80% 0%, 100% 100%, 0% 100%);
+  transform: translateX(100%);
+}
+.user-car.left {
+  margin-left: 12%;
+}
+.user-car.right {
+  margin-left: 63%;
+}
+.bot-car {
+  position: absolute;
+  clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 20% 100%);
+  background-color: transparent;
+  width: 20%;
+  height: 70%;
+  top: 0;
+  margin-left:40%;
+  z-index: 3;
+}
+.bot-car1 {
+  position: absolute;
+  clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 20% 100%);
+  background-color: transparent;
+  width: 20%;
+  height: 70%;
+  top: 0;
+  margin-left:40%;
+  z-index: 3;
+}
+.bot-car1.left {
+  margin-left:16.5%;
+  background-color: #ffa391;
+  top: -20vh;
+  transition: transform 0.3s ease-in-out;
+}
+.bot-car.right {
+  margin-left:63.5%;
+  background-color: #50a391;
+  top: -20vh;
+  transition: transform 0.3s ease-in-out;
+}
+.bot-car1.left.leftride {
+  transform: translateY(100%);
+}
+.bot-car.right.rightride {
+  transform: translateY(100%);
+}
+.bot-car1.center {
+  margin-left:40%;
+  background-color: #ffa391;
+  top: -20vh;
+  transition: transform 0.3s ease-in-out;
+}
+.bot-car.center {
+  margin-left:40%;
+  background-color: #50a391;
+  top: -20vh;
+  transition: transform 0.3s ease-in-out;
+}
+.bot-car1.center.centerride {
+  transform: translateY(100%);
+}
+.bot-car.center.centerride {
+  transform: translateY(100%);
+}
+.fail {
+  position: absolute;
+  top: -90%;
+  color: #ffffff;
+  font-size: 400%;
+  background-color: #ff3333;
+  z-index: 4;
+  margin-left: 26.5%;
+  padding: 10%;
+  transform: translateY(-300%);
+}
+.fail.open {
+  transform: translateY(0%);
+}
+    </style>
+</head>
+<body>
+  <aside class = "left-menu" id = "left-menu-id">
+    <button class = "close-left-menu-button" id = "close-l-m-b">
+    </button>
+    <ul class = "l-m-list">
+      <li>
+        <a class = "text-l-m" href = "add-game-index.html" style="margin-top: -10%;">
+            <p>Добавить  игру</p>
+        </a>
+        <a class = "text-l-m" href = aindex.html>
+            <p> Меню </p>
+        </a>
+        <a class = "text-l-m" href = settings.html>
+            <p> Настройки </p>
+        </a>
+      </li>
+    </ul>
+  </aside>
+    <button class = "btn-left-menu" id = "btn-left-menu-id">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  <object class = "window-game">
+    <aside class = "background" id = "bcg">
+      <aside class = "grass">
+        <button class = "start-game" id = "start">
+          START
+        </button>
+        <button class = "settings" id = "sett">
+          SETTINGS
+        </button>
+        <aside class = "fail" id = "gameover">GAMEOVER</aside>
+        <aside class = "road">
+          <aside class = "user-car" id = "player-car"></aside>
+          <aside class = "bot-car" id = "botnul"></aside>
+          <aside class = "bot-car1" id = "boton"></aside>
+        </aside>
+      </aside>
+    </aside>
+  </object>
+  <script src = "ascript.js" defer></script>
+  <script>
+
+
+  let playerroad = 1;
+  let ride = 0;
+  
+let move = false;
+  let bot0 = 0;
+  let bot1 = 0;
+
+
+
+  const player = document.getElementById('player-car');
+
+  const star = document.getElementById('start');
+
+  const set = document.getElementById('sett');
+
+  const botnull = document.getElementById('botnul');
+  const botone = document.getElementById('boton');
+
+  const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+  
+function updateCarPos() {
+
+    player.classList.remove('left', 'right');
+
+  
+  if (playerroad === 0) {
+
+    player.classList.add('left');
+
+  } else if (playerroad === 2) {
+
+    player.classList.add('right');
+
+  }
+
+  
+}
+
+
+  star.addEventListener('click', function() {
+
+    ride = ride + 1;
+  
+  star.classList.add('goaway');
+  
+  set.classList.add('goaway');
+  
+});
+
+
+  const score = setInterval(() => {
+  if (ride === 1) {
+    bot0 = Math.floor(Math.random() * 2);
+    bot1 = Math.floor(Math.random() * 2);
+
+    botnull.classList.remove('right');
+    botone.classList.remove('left');
+    botnull.classList.remove('center');
+    botone.classList.remove('center');
+    botnull.classList.remove('rightride');
+    botone.classList.remove('leftride');
+    botnull.classList.remove('centerride');
+    botone.classList.remove('centerride');
+
+    if (bot0 === 0) botnull.classList.add('right');
+    if (bot1 === 0) botone.classList.add('left');
+    if (bot0 === 1) botnull.classList.add('center');
+    if (bot1 === 1) botone.classList.add('center');
+
+    setTimeout(() => {
+      if (botnull.classList.contains('right')) {
+        botnull.classList.add('rightride');
+        if (playerroad === 2) {
+          gameover.classList.add('open');
+          ride = 0;
+          setTimeout(() => {
+            gameover.classList.remove('open')
+  
+          star.classList.remove('goaway');
+  
+          set.classList.remove('goaway');
+            }, 4000);
+        }
+      }
+      if (botone.classList.contains('left')) {
+        botone.classList.add('leftride');
+        if (playerroad === 0) {
+          gameover.classList.add('open');
+          ride = 0;
+          setTimeout(() => {
+            gameover.classList.remove('open')
+  
+          star.classList.remove('goaway');
+  
+          set.classList.remove('goaway');
+            }, 4000);
+        }
+      }
+      if (botnull.classList.contains('center')) {
+        botnull.classList.add('centerride');
+        if (playerroad === 1) {
+          gameover.classList.add('open');
+          ride = 0;
+          setTimeout(() => {
+            gameover.classList.remove('open')
+  
+          star.classList.remove('goaway');
+  
+          set.classList.remove('goaway');
+            }, 4000);
+        }
+      }
+      if (botone.classList.contains('center')) {
+        botone.classList.add('centerride');
+        if (playerroad === 1) {
+          gameover.classList.add('open');
+          ride = 0;
+          setTimeout(() => {
+            gameover.classList.remove('open')
+  
+          star.classList.remove('goaway');
+  
+          set.classList.remove('goaway');
+            }, 4000);
+        }
+    }
+    }, 1500);
+  };
+  }, 4000);
+
+  
+document.addEventListener('keydown', (event) => {
+
+    if (move) return;
+
+
+
+    if (event.code === 'KeyA' && playerroad > 0 && ride === 1 ) {
+      move = true;
+
+      player.classList.add('toleft');
+
+      setTimeout(() => {
+
+        playerroad--;
+        player.classList.remove('toleft');
+        updateCarPos();
+        move = false;
+        }, 700);
+
+
+        }  else if (event.code === 'KeyD' && playerroad < 2 && ride === 1 ) {
+
+          move = true;
+      
+    player.classList.add('toright');
+
+
+
+          setTimeout(() => {
+            playerroad++;
+            player.classList.remove('toright');
+            updateCarPos();
+            move = false;
+            }, 700);
+
+            }
+});
+
+
+</script>
+</body>
+</html>

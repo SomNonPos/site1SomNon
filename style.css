@@ -1,0 +1,6 @@
+body {
+  background-color: #1e1f1e;
+}
+body.light-theme {
+  background-color: #000000;
+}
